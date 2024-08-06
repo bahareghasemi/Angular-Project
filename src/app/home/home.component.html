@@ -1,0 +1,46 @@
+<div class="landing-container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/">Photo Editor</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/api-data">Photo Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/form">Submit Photo</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  
+    <div class="banner">
+      <img src="https://via.placeholder.com/1500x500" alt="Banner">
+      <div class="banner-text">
+        <h1>Welcome to Photo Editor</h1>
+        <p>Transform your photos with ease.</p>
+      </div>
+    </div>
+  
+    <div class="content-section">
+      <div class="upload-section">
+        <h2>Upload Your Photo</h2>
+        <input type="file" (change)="onFileSelected($event)">
+      </div>
+  
+      <div *ngIf="selectedImage" class="image-section">
+        <h2>Your Uploaded Photo</h2>
+        <img [src]="selectedImage" alt="Uploaded Photo" class="uploaded-image">
+        <div class="effects-buttons">
+          <button (click)="applyGrayscale()">Grayscale</button>
+          <button (click)="applyBrightness()">Brightness</button>
+          <button (click)="resetImage()">Reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

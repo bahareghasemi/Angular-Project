@@ -1,0 +1,31 @@
+<div class="container px-5 py-14 mx-auto">
+  <h1>Register Form</h1>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      Username:
+      <input type="text" class="form-control" id="username" formControlName="username">
+        @if(registerForm.get('username')?.invalid && registerForm.get('username')?.touched)
+        {<span>Username is required</span>}
+    </div>
+
+    <div class="form-group">
+      Password:
+      <input type="password" class="form-control" id="password" formControlName="password">
+        @if(registerForm.get('password')?.invalid && registerForm.get('password')?.touched)
+        {<span>Password is required</span>}
+        @if(registerForm.controls.password.errors?.['minlength'])
+        {<span>Password with at least 3 letter</span>}
+    </div>
+
+    <div class="form-group">
+      Email:
+      <input type="email" class="form-control" id="email" formControlName="email">
+        @if(registerForm.get('email')?.invalid && registerForm.get('email')?.touched)
+        {<span>Email is required</span>}
+        @if(registerForm.controls.email.errors?.['email'])
+        {<span>Email must be valid email</span>}
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Register</button>
+  </form>
+</div>

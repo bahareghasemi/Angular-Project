@@ -1,0 +1,30 @@
+<div class="container">
+  <h2>Photo List</h2>
+  <div class="button-container">
+    <button (click)="addnewPost()">Add New Photo</button>
+  </div>
+  <div class="search-container">
+    <input type="text" placeholder="Search photos..." [(ngModel)]="searchTerm" (input)="filterPosts()" />
+  </div>
+  @if(showForm){
+    <app-form (formSubmit)="onFormSubmit($event)"></app-form>
+  }
+  <div class="post-list">
+    @for(p of filteredPosts; track p.id){
+    <div class="post-item">
+      <p><strong>ID:</strong> {{ p.id }}</p>
+      <p><strong>Album ID:</strong> {{ p.albumId }}</p>
+      <p><strong>Title:</strong> {{ p.title }}</p>
+      <p><strong>Url:</strong> <a [href]="p.url" target="_blank">{{ p.url }}</a></p>
+      <p><strong>Thumb:</strong> <a [href]="p.thumbnailUrl" target="_blank">{{ p.thumbnailUrl }}</a></p>
+      
+      <!-- <p><strong>Thumbnail Url:</strong> <img [src]="p.thumbnailUrl" alt="{{ p.title }}"></p> -->
+      <div class="post-actions">
+        <button (click)="editPost(p.id)">Edit</button>
+        <button (click)="deletePost(p.id)">Delete</button>
+      </div>
+      <hr />
+    </div>
+    }
+  </div>
+</div>
